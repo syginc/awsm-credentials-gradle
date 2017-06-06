@@ -2,14 +2,17 @@ plugins {
     id 'java-gradle-plugin'
     id 'com.gradle.plugin-publish' version '0.9.7'
     id 'com.github.hierynomus.license' version '0.13.1'
+    id 'maven'
+    id 'maven-publish'
 }
 
 repositories {
    jcenter()
 }
 
-version = '0.2.1'
-group = 'com.github.kaklakariada'
+
+version = '0.2.2'
+group = 'jp.syginc'
 
 ext {
   gradlePluginId = 'com.github.kaklakariada.awsm-credentials-gradle'
@@ -49,4 +52,18 @@ license {
     ext.year = 2017
     ext.name = 'Hamster community'
     ext.email = 'christoph at users.sourceforge.net'
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "/tmp/awsm-credentials"
+        }
+    }
 }
